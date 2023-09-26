@@ -8,6 +8,7 @@ class PageChangeNotify:
 
     def __init__(self, config):
         self.pages = config['pages']
+        self.ftqq_key = config['FTQQ_KEY']
 
     def check_change(self):
         differ = difflib.Differ()
@@ -44,17 +45,15 @@ class PageChangeNotify:
 
     def send_msg(self, url, title, content):
         print(url, title, content)
-        api_key = os.getenv("FTQQ_KEY")
-        if not api_key:
-            print('请设置环境变量 FTQQ_KEY')
+        if not self.ftqq_key:
+            print('请设置 FTQQ_KEY')
             exit()
-        url = "https://sctapi.ftqq.com/%s.send" % api_key
+        url = "https://sctapi.ftqq.com/%s.send" % self.ftqq_key
         requests.post(url, {
             'title': title,
             'desp': content
         })
 
-        
 
 if __name__ == '__main__':
     with open('config.json', 'r') as f:
