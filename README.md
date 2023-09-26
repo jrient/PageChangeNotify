@@ -7,7 +7,7 @@
 
 ## 推送支持
 
-1. (方糖)[https://sct.ftqq.com/sendkey] 目前每日限额5条。
+1. [方糖](https://sct.ftqq.com/sendkey) 目前每日限额5条。
 2. 其他正在开发中。。。
 
 ## 使用方法
