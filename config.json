@@ -1,0 +1,19 @@
+{
+    "pages" : [
+        {
+            "url" : "https://www.vodtw.la/book/3438/",
+            "selector" : ".section-box"
+        },
+        {
+            "url" : "https://www.vodtw.la/book/6149/",
+            "selector" : ".section-box"
+        },
+        {
+            "url" : "https://m.xklxsw.net/book/370734/",
+            "selector" : "#last12"
+        }
+    ],
+    "nodos" : [
+
+    ]
+}
