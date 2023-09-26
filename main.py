@@ -1,4 +1,4 @@
-import requests, json, difflib, re
+import requests, json, difflib, re, os
 from bs4 import BeautifulSoup
 from MyDB import init_table, read_db, write_db
 
@@ -43,9 +43,18 @@ class PageChangeNotify:
                     print(url + ' : [no change]')
 
     def send_msg(self, url, title, content):
-        print(url)
-        print(title)
-        print(content)
+        print(url, title, content)
+        api_key = os.getenv("FTQQ_KEY")
+        if not api_key:
+            print('请设置环境变量 FTQQ_KEY')
+            exit()
+        url = "https://sctapi.ftqq.com/%s.send" % api_key
+        requests.post(url, {
+            'title': title,
+            'desp': content
+        })
+
+        
 
 if __name__ == '__main__':
     with open('config.json', 'r') as f:
