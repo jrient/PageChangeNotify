@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 from MyDB import init_table, read_db, write_db
 
 
-
 class PageChangeNotify:
 
     def __init__(self, config):
@@ -56,7 +55,10 @@ class PageChangeNotify:
 
 
 if __name__ == '__main__':
-    with open('config.json', 'r') as f:
+    # 使用__file__变量获取当前脚本的位置
+    current_file_location = os.path.dirname(__file__)
+    config_file = os.path.join(current_file_location, 'config.json')
+    with open(config_file, 'r') as f:
         config = json.load(f)
     
     p = PageChangeNotify(config)
