@@ -9,5 +9,6 @@
             "selector" : ".section-box"
         }
     ],
+    "proxy": "",
     "FTQQ_KEY" : "12345"
 }

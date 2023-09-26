@@ -39,6 +39,8 @@ config.json
             "selector" : ".section-box"
         }
     ],
+    // 代理 不使用代理可以留空
+    "proxy": "http://127.0.0.1:8888",
     // 方糖推送key
     "FTQQ_KEY" : "SCT41444TSOsl0RaT4cBm3FQsnJKKYR3c"
 }

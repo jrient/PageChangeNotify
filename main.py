@@ -8,13 +8,21 @@ class PageChangeNotify:
     def __init__(self, config):
         self.pages = config['pages']
         self.ftqq_key = config['FTQQ_KEY']
+        self.proxy = config['proxy']
 
     def check_change(self):
         differ = difflib.Differ()
         for item in self.pages:
             url = item['url']
             try :
-                html_text = requests.get(url).text
+                proxy = {
+                    'http': self.proxy,
+                    'https': self.proxy
+                }
+                header = {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36'
+                }
+                html_text = requests.get(url, proxies=proxy, headers=header).text
                 soup = BeautifulSoup(html_text, 'html.parser')
                 title = soup.title.get_text()
                 if 'selector' in item and item['selector'] != '':
