@@ -15,6 +15,8 @@
 ```shell
 # 安装依赖
 pip install -r requirements.txt
+# 复制配置文件 填写自己的配置
+cp config_example.json config.json
 # 执行脚本
 python main.py
 ```

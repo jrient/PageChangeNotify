@@ -7,14 +7,7 @@
         {
             "url" : "https://www.vodtw.la/book/6149/",
             "selector" : ".section-box"
-        },
-        {
-            "url" : "https://m.xklxsw.net/book/370734/",
-            "selector" : "#last12"
         }
     ],
-    "FTQQ_KEY" : "123456789",
-    "nodos" : [
-
-    ]
+    "FTQQ_KEY" : "12345"
 }
