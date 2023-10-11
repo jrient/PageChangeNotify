@@ -51,7 +51,7 @@ class PageChangeNotify:
                     change_content = ''.join(change_content)
                     self.send_msg(name, title, change_content)
                     print(name + ' : [have change]')
-                    write_db(name, all_text)
+                    write_db(url, all_text)
                 else :
                     print(name + ' : [no change]')
 
