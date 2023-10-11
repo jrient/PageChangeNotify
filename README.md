@@ -33,9 +33,9 @@ config.json
         {
             # 自定义页面名称，仅用于提醒和日志
             "title": "页面名称",
-            // 需要检测的页面链接
+            # 需要检测的页面链接
             "url" : "https://www.vodtw.la/book/3438/",
-            // 检测页面内容的css选择器，如果不希望指定，可以留空
+            # 检测页面内容的css选择器，如果不希望指定，可以留空
             "selector" : ".section-box",
             //子项目代理，指定当前页面使用代理 
             "proxy": {
@@ -43,50 +43,50 @@ config.json
             },
         },
         {
-            // 精简模式，使用全局代理
-            // 不定义页面名称，则使用url作为页面名称
+            # 精简模式，使用全局代理
+            # 不定义页面名称，则使用url作为页面名称
             "url" : "https://www.vodtw.la/book/6149/",
             "selector" : ".section-box"
         }
     ],
-    // 全局代理 不使用代理可以留空
+    # 全局代理 不使用代理可以留空
     "proxy": {
         "http": "",
         "https" : ""
     },
-    // 发送消息的接收人 选择你设置的推送方式notify_set 配置即可
+    # 发送消息的接收人 选择你设置的推送方式notify_set 配置即可
     "send_to": {
-        // 微信公众号接收者的openid
+        # 微信公众号接收者的openid
         "weixin_notify" : [
             "aaa-jl53e_PjLcb6-rIIFr6PCsMII"
         ],
-        // server酱的key
+        # server酱的key
         "ftqq_notify": [
             "AAT41444TSOsl0RaT4cBm3FQsnJKKYR3c"
         ]
     },
-    // 设置你选择的推送方式
+    # 设置你选择的推送方式
     "notify_set" : "ftqq_notify",
-    // 推送配置
+    # 推送配置
     "notify_config" : {
-        // 微信公众号配置
+        # 微信公众号配置
         "weixin_notify" : {
-            // 微信公众平台 > 设置与开发 > 基本配置 > appid 和 appsecret
+            # 微信公众平台 > 设置与开发 > 基本配置 > appid 和 appsecret
             "app_id" : "wxffffff",
             "app_secret" : "b2fasdfasdf",
-            // 微信公众平台 > 广告与服务 > 模板消息 > 添加模板
+            # 微信公众平台 > 广告与服务 > 模板消息 > 添加模板
             "template_id" : "E_PXClp9Usl91OhY",
-            // 模板消息的详细内容， 设定模板变量 格式为 {{__变量__}}
+            # 模板消息的详细内容， 设定模板变量 格式为 {{__变量__}}
             "template_msg": {
-                // {{__TITLE__}} 标题
+                # {{__TITLE__}} 标题
                 "keyword1" : {"value" : "{{__TITLE__}}"},
-                // {{__DATETIME__}} 时间日期
+                # {{__DATETIME__}} 时间日期
                 "keyword2" : {"value" : "{{__DATETIME__}}"},
-                // {{__CONTENT__}} 差异内容
+                # {{__CONTENT__}} 差异内容
                 "remark" : {"value" : "{{__CONTENT__}}"}
             }
         },
-        // server酱配置 暂时无需配置内容
+        # server酱配置 暂时无需配置内容
         "ftqq_notify": {}
     }
 }
