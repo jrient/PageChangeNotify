@@ -1,7 +1,7 @@
 {
     "pages" : [
         {
-            "name": "小说1",
+            "title": "小说1",
             "url" : "https://www.vodtw.la/book/3438/",
             "selector" : ".section-box",
             "proxy": {
@@ -10,7 +10,7 @@
             }
         },
         {
-            "name": "小说2",
+            "title": "小说2",
             "url" : "https://www.vodtw.la/book/6149/",
             "selector" : ".section-box"
         }
@@ -19,5 +19,26 @@
         "http": "",
         "https" : ""
     },
-    "FTQQ_KEY" : "12345"
+    "send_to": {
+        "weixin_notify" : [
+            "aaa-jl53e_PjLcb6-rIIFr6PCsMII"
+        ],
+        "ftqq_notify": [
+            "AAT41444TSOsl0RaT4cBm3FQsnJKKYR3c"
+        ]
+    },
+    "notify_set" : "ftqq_notify",
+    "notify_config" : {
+        "weixin_notify" : {
+            "app_id" : "wxffffff",
+            "app_secret" : "b2fasdfasdf",
+            "template_id" : "E_PXClp9Usl91OhY",
+            "template_msg": {
+                "keyword1" : {"value" : "{{__TITLE__}}"},
+                "keyword2" : {"value" : "{{__DATETIME__}}"},
+                "remark" : {"value" : "{{__CONTENT__}}"}
+            }
+        },
+        "ftqq_notify": {}
+    }
 }

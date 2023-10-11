@@ -1,23 +1,20 @@
 import requests, json, difflib, re, os
 from bs4 import BeautifulSoup
 from MyDB import init_table, read_db, write_db
+from notify_modules import Handler
 
 
 class PageChangeNotify:
 
     def __init__(self, config):
+        self.config = config
         self.pages = config['pages']
-        self.ftqq_key = config['FTQQ_KEY']
         self.proxy = config['proxy']
 
     def check_change(self):
         differ = difflib.Differ()
         for item in self.pages:
             url = item['url']
-            if 'name' in item:
-                name = item['name']
-            else :
-                name = url
             try :
                 if 'proxy' in item and isinstance(item['proxy'], dict):
                     proxy = item['proxy']
@@ -33,14 +30,16 @@ class PageChangeNotify:
                     soup = soup.select_one(item['selector'])
                 all_text = re.sub(r'[\n"]+', '', soup.get_text())
             except Exception as e:
-                print(name + ' : [error]' , e)
+                print(url + ' : [error]' , e)
                 continue
                 # exit()
             
+            if 'title' in item:
+                title = item['title']
             db_result = read_db(url)
             if db_result is None:
                 write_db(url, all_text)
-                print(name + ' : [new page]')
+                print(title + ' : [new page]')
             else :
                 db_text = db_result[2]
                 if all_text != db_text:
@@ -49,22 +48,14 @@ class PageChangeNotify:
                     diff = difflib.unified_diff(db_text.split(), all_text.split(), lineterm='')
                     change_content = [line[1:] for line in diff if line.startswith('+')][1:]
                     change_content = ''.join(change_content)
-                    self.send_msg(name, title, change_content)
-                    print(name + ' : [have change]')
+                    self.send_msg(title, change_content)
+                    print(title + ' : [have change]')
                     write_db(url, all_text)
                 else :
-                    print(name + ' : [no change]')
+                    print(title + ' : [no change]')
 
-    def send_msg(self, name, title, content):
-        print(name, title, content)
-        if not self.ftqq_key:
-            print('请设置 FTQQ_KEY')
-            exit()
-        url = "https://sctapi.ftqq.com/%s.send" % self.ftqq_key
-        requests.post(url, {
-            'title': title,
-            'desp': content
-        })
+    def send_msg(self, title, content):
+        Handler.Handler(self.config['notify_set'], self.config['notify_config'], self.config['send_to']).send_notify(title, content)
 
 
 if __name__ == '__main__':

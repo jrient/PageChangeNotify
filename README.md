@@ -7,8 +7,10 @@
 
 ## 推送支持
 
-1. [方糖](https://sct.ftqq.com/sendkey) 目前每日限额5条。
-2. 其他正在开发中。。。
+1. [server酱(方糖)](https://sct.ftqq.com/sendkey) 目前每日限额5条。
+2. [微信公众号](https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Template_Message_Interface.html) 企业公众号可以使用，个人公众号不支持。
+
+其他正在开发中。。。
 
 ## 使用方法
 
@@ -30,7 +32,7 @@ config.json
     "pages" : [
         {
             // 自定义页面名称，仅用于提醒和日志
-            "name": "页面名称",
+            "title": "页面名称",
             // 需要检测的页面链接
             "url" : "https://www.vodtw.la/book/3438/",
             // 检测页面内容的css选择器，如果不希望指定，可以留空
@@ -52,8 +54,41 @@ config.json
         "http": "",
         "https" : ""
     },
-    // 方糖推送key
-    "FTQQ_KEY" : "12312312312312312"
+    // 发送消息的接收人 选择你设置的推送方式notify_set 配置即可
+    "send_to": {
+        // 微信公众号接收者的openid
+        "weixin_notify" : [
+            "aaa-jl53e_PjLcb6-rIIFr6PCsMII"
+        ],
+        // server酱的key
+        "ftqq_notify": [
+            "AAT41444TSOsl0RaT4cBm3FQsnJKKYR3c"
+        ]
+    },
+    // 设置你选择的推送方式
+    "notify_set" : "ftqq_notify",
+    // 推送配置
+    "notify_config" : {
+        // 微信公众号配置
+        "weixin_notify" : {
+            // 微信公众平台 > 设置与开发 > 基本配置 > appid 和 appsecret
+            "app_id" : "wxffffff",
+            "app_secret" : "b2fasdfasdf",
+            // 微信公众平台 > 广告与服务 > 模板消息 > 添加模板
+            "template_id" : "E_PXClp9Usl91OhY",
+            // 模板消息的详细内容， 设定模板变量 格式为 {{__变量__}}
+            "template_msg": {
+                // {{__TITLE__}} 标题
+                "keyword1" : {"value" : "{{__TITLE__}}"},
+                // {{__DATETIME__}} 时间日期
+                "keyword2" : {"value" : "{{__DATETIME__}}"},
+                // {{__CONTENT__}} 差异内容
+                "remark" : {"value" : "{{__CONTENT__}}"}
+            }
+        },
+        // server酱配置 暂时无需配置内容
+        "ftqq_notify": {}
+    }
 }
 
 ```
