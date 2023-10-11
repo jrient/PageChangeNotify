@@ -1,14 +1,23 @@
 {
     "pages" : [
         {
+            "name": "小说1",
             "url" : "https://www.vodtw.la/book/3438/",
-            "selector" : ".section-box"
+            "selector" : ".section-box",
+            "proxy": {
+                "http": "",
+                "https" : ""
+            }
         },
         {
+            "name": "小说2",
             "url" : "https://www.vodtw.la/book/6149/",
             "selector" : ".section-box"
         }
     ],
-    "proxy": "",
+    "proxy": {
+        "http": "",
+        "https" : ""
+    },
     "FTQQ_KEY" : "12345"
 }

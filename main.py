@@ -14,11 +14,15 @@ class PageChangeNotify:
         differ = difflib.Differ()
         for item in self.pages:
             url = item['url']
+            if 'name' in item:
+                name = item['name']
+            else :
+                name = url
             try :
-                proxy = {
-                    'http': self.proxy,
-                    'https': self.proxy
-                }
+                if 'proxy' in item and isinstance(item['proxy'], dict):
+                    proxy = item['proxy']
+                else :
+                    proxy = self.proxy
                 header = {
                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36'
                 }
@@ -29,13 +33,14 @@ class PageChangeNotify:
                     soup = soup.select_one(item['selector'])
                 all_text = re.sub(r'[\n"]+', '', soup.get_text())
             except Exception as e:
-                print(url + ' : [error]' , e)
-                exit()
+                print(name + ' : [error]' , e)
+                continue
+                # exit()
             
             db_result = read_db(url)
             if db_result is None:
                 write_db(url, all_text)
-                print(url + ' : [new page]')
+                print(name + ' : [new page]')
             else :
                 db_text = db_result[2]
                 if all_text != db_text:
@@ -44,14 +49,14 @@ class PageChangeNotify:
                     diff = difflib.unified_diff(db_text.split(), all_text.split(), lineterm='')
                     change_content = [line[1:] for line in diff if line.startswith('+')][1:]
                     change_content = ''.join(change_content)
-                    self.send_msg(url, title, change_content)
-                    print(url + ' : [have change]')
-                    write_db(url, all_text)
+                    self.send_msg(name, title, change_content)
+                    print(name + ' : [have change]')
+                    write_db(name, all_text)
                 else :
-                    print(url + ' : [no change]')
+                    print(name + ' : [no change]')
 
-    def send_msg(self, url, title, content):
-        print(url, title, content)
+    def send_msg(self, name, title, content):
+        print(name, title, content)
         if not self.ftqq_key:
             print('请设置 FTQQ_KEY')
             exit()
@@ -66,7 +71,7 @@ if __name__ == '__main__':
     # 使用__file__变量获取当前脚本的位置
     current_file_location = os.path.dirname(__file__)
     config_file = os.path.join(current_file_location, 'config.json')
-    with open(config_file, 'r') as f:
+    with open(config_file, 'r', encoding='utf-8') as f:
         config = json.load(f)
     
     p = PageChangeNotify(config)
