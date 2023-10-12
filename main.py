@@ -48,8 +48,8 @@ class PageChangeNotify:
                     diff = difflib.unified_diff(db_text.split(), all_text.split(), lineterm='')
                     change_content = [line[1:] for line in diff if line.startswith('+')][1:]
                     change_content = ''.join(change_content)
-                    self.send_msg(title, change_content)
                     print(title + ' : [have change]')
+                    self.send_msg(title, change_content)
                     write_db(url, all_text)
                 else :
                     print(title + ' : [no change]')

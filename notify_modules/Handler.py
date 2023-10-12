@@ -17,7 +17,7 @@ class Handler:
             exit()
         self.notify_set = notify_set
         self.notify_config = notify_config[notify_set]
-        self.send_to = send_to
+        self.send_to = send_to[notify_set]
         
     def send_notify(self, title, content):
         if self.notify_set == SET_WEIXIN_notify:

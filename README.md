@@ -27,7 +27,7 @@ python main.py
 
 config.json
 
-```json
+```
 {
     "pages" : [
         {
