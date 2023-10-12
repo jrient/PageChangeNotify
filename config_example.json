@@ -27,15 +27,17 @@
             "AAT41444TSOsl0RaT4cBm3FQsnJKKYR3c"
         ]
     },
-    "notify_set" : "ftqq_notify",
+    "notify_set" : "weixin_notify",
     "notify_config" : {
         "weixin_notify" : {
             "app_id" : "wxffffff",
+            "type" : "tmpl",
             "app_secret" : "b2fasdfasdf",
             "template_id" : "E_PXClp9Usl91OhY",
             "template_msg": {
                 "keyword1" : {"value" : "{{__TITLE__}}"},
                 "keyword2" : {"value" : "{{__DATETIME__}}"},
+                "keyword3" : {"value" : "{{__URL__}}"},
                 "remark" : {"value" : "{{__CONTENT__}}"}
             }
         },

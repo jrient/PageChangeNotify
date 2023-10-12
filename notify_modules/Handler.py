@@ -19,10 +19,10 @@ class Handler:
         self.notify_config = notify_config[notify_set]
         self.send_to = send_to[notify_set]
         
-    def send_notify(self, title, content):
+    def send_notify(self, title, content, url):
         if self.notify_set == SET_WEIXIN_notify:
             notify_module = WeixinNotify(self.notify_config)
-            return notify_module.send_msg(self.send_to, notify_module.register_msg(title, content))
+            return notify_module.send_msg(self.send_to, {"title": title, "content": content, "url": url})
         elif self.notify_set == SET_FTQQ_notify:
             return FTQQNotify().send_msg(self.send_to, title, content)
         else:

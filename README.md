@@ -71,6 +71,8 @@ config.json
     "notify_config" : {
         # 微信公众号配置
         "weixin_notify" : {
+            # 目前微信支持模板消息和订阅消息，tmpl:模板消息，subscription:订阅消息
+            "type" : "tmpl",
             # 微信公众平台 > 设置与开发 > 基本配置 > appid 和 appsecret
             "app_id" : "wxffffff",
             "app_secret" : "b2fasdfasdf",
@@ -82,6 +84,8 @@ config.json
                 "keyword1" : {"value" : "{{__TITLE__}}"},
                 # {{__DATETIME__}} 时间日期
                 "keyword2" : {"value" : "{{__DATETIME__}}"},
+                # {{__URL__}} 链接
+                "keyword3" : {"value" : "{{__URL__}}"},
                 # {{__CONTENT__}} 差异内容
                 "remark" : {"value" : "{{__CONTENT__}}"}
             }
@@ -92,3 +96,12 @@ config.json
 }
 
 ```
+
+## 推送说明
+
+### 支持的推送
+
+| 推送方式 | 说明 |
+| -- | -- |
+| server酱(方糖)微信推送 | 免费版本每天限额5条 
+| 微信公众号 | 企业公众号可以使用，个人公众号不支持，目前支持模板消息和订阅消息。 订阅消息改版后的一次性订阅消息不太好用，模板消息不支持链接跳转

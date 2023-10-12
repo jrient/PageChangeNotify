@@ -50,13 +50,13 @@ class PageChangeNotify:
                     change_content = [line[1:] for line in diff if line.startswith('+')][1:]
                     change_content = ''.join(change_content)
                     print(title + ' : [have change]')
-                    self.send_msg(title, change_content)
+                    self.send_msg(title, change_content, url)
                     write_db(url, all_text)
                 else :
                     print(title + ' : [no change]')
 
-    def send_msg(self, title, content):
-        Handler.Handler(self.config['notify_set'], self.config['notify_config'], self.config['send_to']).send_notify(title, content)
+    def send_msg(self, title, content, url):
+        Handler.Handler(self.config['notify_set'], self.config['notify_config'], self.config['send_to']).send_notify(title, content, url)
 
 
 if __name__ == '__main__':
@@ -72,5 +72,3 @@ if __name__ == '__main__':
 
     # 检查是否有变化
     p.check_change()
-
-
