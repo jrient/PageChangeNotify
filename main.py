@@ -25,17 +25,18 @@ class PageChangeNotify:
                 }
                 html_text = requests.get(url, proxies=proxy, headers=header).text
                 soup = BeautifulSoup(html_text, 'html.parser')
-                title = soup.title.get_text()
+                if 'title' in item:
+                    title = item['title']
+                else :
+                    title = soup.title.get_text()
                 if 'selector' in item and item['selector'] != '':
                     soup = soup.select_one(item['selector'])
                 all_text = re.sub(r'[\n"]+', '', soup.get_text())
             except Exception as e:
-                print(url + ' : [error]' , e)
+                print(title + ' : [error]' , e)
                 continue
                 # exit()
             
-            if 'title' in item:
-                title = item['title']
             db_result = read_db(url)
             if db_result is None:
                 write_db(url, all_text)
