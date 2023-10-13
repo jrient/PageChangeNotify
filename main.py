@@ -2,6 +2,7 @@ import requests, json, difflib, re, os
 from bs4 import BeautifulSoup
 from MyDB import init_table, read_db, write_db
 from notify_modules import Handler
+from datetime import datetime
 
 
 class PageChangeNotify:
@@ -60,6 +61,7 @@ class PageChangeNotify:
 
 
 if __name__ == '__main__':
+    print('start: ' + datetime.now())
     # 使用__file__变量获取当前脚本的位置
     current_file_location = os.path.dirname(__file__)
     config_file = os.path.join(current_file_location, 'config.json')
