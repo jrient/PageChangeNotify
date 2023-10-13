@@ -61,7 +61,7 @@ class PageChangeNotify:
 
 
 if __name__ == '__main__':
-    print('start: ' + datetime.now())
+    print('start: ' + str(datetime.now()))
     # 使用__file__变量获取当前脚本的位置
     current_file_location = os.path.dirname(__file__)
     config_file = os.path.join(current_file_location, 'config.json')
