@@ -16,6 +16,9 @@ class PageChangeNotify:
         differ = difflib.Differ()
         for item in self.pages:
             url = item['url']
+            title = url
+            if 'title' in item:
+                title = item['title']
             try :
                 if 'proxy' in item and isinstance(item['proxy'], dict):
                     proxy = item['proxy']
@@ -26,10 +29,6 @@ class PageChangeNotify:
                 }
                 html_text = requests.get(url, proxies=proxy, headers=header).text
                 soup = BeautifulSoup(html_text, 'html.parser')
-                if 'title' in item:
-                    title = item['title']
-                else :
-                    title = soup.title.get_text()
                 if 'selector' in item and item['selector'] != '':
                     soup = soup.select_one(item['selector'])
                 all_text = re.sub(r'[\n"]+', '', soup.get_text())
